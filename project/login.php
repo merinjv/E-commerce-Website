@@ -8,6 +8,9 @@
 </form>
 
 <?php
+if(!empty($_SESSION['message'])) {
+   echo $_SESSION['message'];
+}
 if (isset($_POST["login"])) {
     $email = null;
     $password = null;
@@ -32,7 +35,7 @@ if (isset($_POST["login"])) {
 
             $params = array(":email" => $email);
             $r = $stmt->execute($params);
-            echo "db returned: " . var_export($r, true);
+        //    echo "db returned: " . var_export($r, true);
             $e = $stmt->errorInfo();
             if ($e[0] != "00000") {
                 echo "uh oh something went wrong: " . var_export($e, true);
@@ -59,7 +62,7 @@ SELECT Roles.name FROM Roles JOIN UserRoles on Roles.id = UserRoles.role_id wher
                     header("Location: home.php");
                 }
                 else {
-                    echo "<br>Invalid password, get out!<br>";
+                    echo "<br>Invalid password<br>";
                 }
             }
             else {
