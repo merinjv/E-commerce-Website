@@ -19,8 +19,13 @@ if (isset($_POST["register"])) {
         $username = $_POST["username"];
     }
     $isValid = true;
+    // check password length
+    if (strlen($password) < 5) {
+      echo "Password is too short <br>";
+      $isValid = false;
+    }
     //check if passwords match on the server side
-    if ($password == $confirm) {
+    elseif ($password == $confirm) {
         echo "Passwords match <br>";
     }
     else {
@@ -42,7 +47,6 @@ if (isset($_POST["register"])) {
             $params = array(":email" => $email, ":username" => $username, ":password" => $hash);
             $r = $stmt->execute($params);
             //let's just see what's returned
-            echo "db returned: " . var_export($r, true);
             $e = $stmt->errorInfo();
             if ($e[0] == "00000") {
                 echo "<br>Welcome! You successfully registered, please login.";
@@ -75,8 +79,8 @@ if (!isset($username)) {
     <label for="user">Username:</label>
     <input type="text" id="user" name="username" required maxlength="60" value="<?php safer_echo($username); ?>"/>
     <label for="p1">Password:</label>
-    <input type="password" id="p1" name="password" required/>
+    <input type="password" id="p1" name="password" required maxlength="60"/>
     <label for="p2">Confirm Password:</label>
-    <input type="password" id="p2" name="confirm" required/>
+    <input type="password" id="p2" name="confirm" required maxlength="60"/>
     <input type="submit" name="register" value="Register"/>
 </form>
