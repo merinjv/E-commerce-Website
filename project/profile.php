@@ -5,7 +5,7 @@
 //As an exercise swap these two and see how things change
 if (!is_logged_in()) {
     //this will redirect to login and kill the rest of this script (prevent it from executing)
-    $_SESSION['message'] = 'Sorry you must login to go to your profile';
+    flash("You must be logged in to access this page");
     die(header("Location: login.php"));
 }
 
@@ -31,7 +31,7 @@ if (isset($_POST["saved"])) {
             }
         }
         if ($inUse > 0) {
-            echo "Email is already in use";
+            flash("Email is already in use");
             //for now we can just stop the rest of the update
             $isValid = false;
         }
@@ -55,7 +55,7 @@ if (isset($_POST["saved"])) {
             }
         }
         if ($inUse > 0) {
-            echo "Username is already in use";
+            flash("Username is already in use");
             //for now we can just stop the rest of the update
             $isValid = false;
         }
@@ -67,10 +67,10 @@ if (isset($_POST["saved"])) {
         $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
         $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
         if ($r) {
-            echo "Updated profile";
+            flash("Updated profile");
         }
         else {
-            echo "Error updating profile";
+            flash("Error updating profile");
         }
         //password is optional, so check if it's even set
         //if so, then check if it's a valid reset request
@@ -82,10 +82,10 @@ if (isset($_POST["saved"])) {
                 $stmt = $db->prepare("UPDATE Users set password = :password where id = :id");
                 $r = $stmt->execute([":id" => get_user_id(), ":password" => $hash]);
                 if ($r) {
-                    echo "Reset password";
+                    flash("Reset password");
                 }
                 else {
-                    echo "Error resetting password";
+                    flash("Error resetting password");
                 }
             }
         }
