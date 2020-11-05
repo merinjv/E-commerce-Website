@@ -8,12 +8,15 @@ var context;
 var loop;
 var leftPaddle;
 var rightPaddle;
+var temp;
 var ball;
 var paddleWidth = 25;
 var paddleHeight = 100;
 var ballSize = 10;
 var ballSpeed = 2;
 var paddleSpeed = 2;
+var level = 1;
+var levelCheck = 1;
 var drawables = [];
 // Key Codes
 var W = 87;
@@ -49,9 +52,11 @@ function init() {
         canvas.focus();
     }
 }
+
 function resetBall() {
     ball.x = canvas.width / 2 - ball.w / 2;
     ball.y = canvas.height / 2 - ball.w / 2;
+    ball.c = '#000000';
     // Modify the ball object to have two speed properties, one for X and one for Y
     ball.sX = ballSpeed;
     ball.sY = ballSpeed / 2;
@@ -186,11 +191,13 @@ function checkPaddleCollision() {
     // Bounce the ball off the paddles
     if (ball.y + ball.h / 2 >= leftPaddle.y && ball.y + ball.h / 2 <= leftPaddle.y + leftPaddle.h) {
         if (ball.x <= leftPaddle.x + leftPaddle.w) {
+            ball.c = leftPaddle.c;
             bounceBall();
         }
     }
     if (ball.y + ball.h / 2 >= rightPaddle.y && ball.y + ball.h / 2 <= rightPaddle.y + rightPaddle.h) {
         if (ball.x + ball.w >= rightPaddle.x) {
+            ball.c = rightPaddle.c;
             bounceBall();
         }
     }
@@ -201,10 +208,30 @@ function checkScore() {
         rightScore++;
         resetBall();
         ball.sX *= -1;
+        leftPaddle.h+=10;
     } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
         leftScore++;
         resetBall();
         ball.sX *= -1;
+        rightPaddle.h+=10;
+    }
+    if(leftScore==5){
+        leftScore=0;
+        rightScore=0;
+        level++;
+        ballSpeed++;
+        rightPaddle.h = 100;
+        leftPaddle.h = 100;
+        if(level%2==0){
+            leftPaddle.c = '#0000BC';
+            rightPaddle.c = '#BC0000';
+        }
+        else{
+            rightPaddle.c = '#0000BC';
+            leftPaddle.c = '#BC0000';
+            
+        }
+        
     }
 }
 function drawScores() {
@@ -215,6 +242,9 @@ function drawScores() {
     context.fillText('Score: ' + leftScore, 5, 24);
     context.textAlign = 'right';
     context.fillText('Score: ' + rightScore, canvas.width - 5, 24);
+    context.textAlign = 'center';
+    context.fillText('Level: ' + level, canvas.width/2, 24);
+    
 }
 function erase() {
     context.fillStyle = '#FFFFFF';
@@ -234,6 +264,8 @@ function gameLoop() {
     for (let i = 0; i < drawables.length; i++) {
         drawables[i].draw();
     }
+    
+    
 }
 </script>
 </head>
