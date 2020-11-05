@@ -7,7 +7,6 @@ session_destroy();
 ?>
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 <?php
-session_start();
-$_SESSION['message'] = 'Successful Logout';
-header("Location: login.php");
+flash("You have been logged out");
+die(header("Location: login.php"));
 ?>
