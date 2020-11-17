@@ -12,6 +12,14 @@ $db = getDB();
 $stmt = $db->prepare("SELECT Carts.product_id,Carts.name,Carts.price, Carts.quantity, Users.username FROM Carts JOIN Users on Carts.user_id = Users.id LEFT JOIN Products on Products.id = Carts.product_id");
 $r = $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$total=0;
+
+foreach($results as $p){
+
+ $total+=$p["price"];
+
+}
 ?>
     <h3>View Cart</h3>
     <div class="card">
@@ -28,7 +36,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div>Owned by: <?php safer_echo($p["username"]); ?></div>
             </div>
         </div>
-        <div></div>
         <?php endforeach; ?>
+        <div class="total"><br>Total: $<?php safer_echo($total); ?></div>
     </div>
 <?php require(__DIR__ . "/partials/flash.php");
