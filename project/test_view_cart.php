@@ -6,7 +6,6 @@ if (!has_role("Admin")) {
     die(header("Location: login.php"));
 }
 ?>
-
 <?php
 $db = getDB();
 $stmt = $db->prepare("SELECT Carts.product_id,Carts.name,Carts.price, Carts.quantity, Users.username FROM Carts JOIN Users on Carts.user_id = Users.id LEFT JOIN Products on Products.id = Carts.product_id");
@@ -34,9 +33,15 @@ foreach($results as $p){
                 <div>Quantity: <?php safer_echo($p["quantity"]); ?></div>
                 <div>Product ID: <?php safer_echo($p["product_id"]); ?></div>
                 <div>Owned by: <?php safer_echo($p["username"]); ?></div>
+                <div>
+                     <a type="button" href="test_view_cart.php" method = 'POST' value= "$p[product_id]">Delete</a>
+                </div>
             </div>
         </div>
         <?php endforeach; ?>
         <div class="total"><br>Total: $<?php safer_echo($total); ?></div>
+        <div class="card-title">
+                     <a type="button" href="test_view_cart.php" value="id" onclick="clearCart()">Clear Cart</a>
+                </div>
     </div>
 <?php require(__DIR__ . "/partials/flash.php");
