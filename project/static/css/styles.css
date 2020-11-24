@@ -42,7 +42,7 @@ ul[class="nav"]{
 input, select {
     width: 99.5%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 20px 15px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -62,6 +62,41 @@ input[type=submit] {
     cursor: pointer;
     
 }
+input[type=checkbox] {
+    width: 1%;
+    background-color: black;
+    color: white;
+    padding: 14px 10px;
+    margin-left:6px;
+    margin-top:8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+input[type=radio] {
+    width: 1%;
+    background-color: black;
+    color: white;
+    padding: 14px 10px;
+    margin-left:6px;
+    margin-top:8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+input[type=number] {
+    width: 99.5%;
+    padding: 12px 20px;
+    margin: 20px 30px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+}
+
 
 input:nth-of-type(1) {
   
