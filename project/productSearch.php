@@ -16,6 +16,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     $qy = "SELECT id,name,quantity,price,description,visibility, user_id from Products WHERE name like :q ";
     if(!has_role("Admin"))
     {
+        //visibility check
         $qy = "SELECT id,name,quantity,price,description,visibility, user_id from Products WHERE name like :q AND visibility=0 ";
     }
     if(isset($_POST["priceCheck"]))
