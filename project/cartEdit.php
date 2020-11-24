@@ -19,7 +19,6 @@ if (isset($_GET["id"])) {
 <?php
 //saving
 if (isset($_POST["save"])) {
-    //TODO add proper validation/checks
     $name = $_POST["name"];
     $product_id = substr($_POST["product_id"],-2);
     $quantity = $_POST["quantity"];
