@@ -18,3 +18,4 @@ if (isset($_GET["id"]) && is_logged_in()) {
 ?>
 
 <?php require(__DIR__ . "/partials/flash.php");
+//end
