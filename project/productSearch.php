@@ -41,6 +41,7 @@ elseif(isset($_POST["categorize"])) {
     $qy = "SELECT id,name,quantity,price,description,visibility, user_id from Products WHERE category=:category ";
     if(!has_role("Admin"))
     {
+        //visibility check
         $qy="SELECT id,name,quantity,price,description,visibility, user_id from Products WHERE category=:category AND visibility=0 ";
     }
     if(isset($_POST["priceCheck"]))
