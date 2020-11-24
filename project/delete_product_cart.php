@@ -7,7 +7,6 @@ if (!is_logged_in()) {
 }
 ?>
 <?php
-//we'll put this at the top so both php block have access to it
 if (isset($_GET["id"])) {
     
     $result = deleteRow($_GET["id"]);
