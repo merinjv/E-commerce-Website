@@ -89,35 +89,24 @@ function getQuantityPrice($quantity,$id){
 }
 
 function deleteRow($id)
-{
-
+{	
     $db = getDB();
-    $stmt = $db->prepare("DELETE FROM Carts WHERE product_id=:product_id");
-    $r = $stmt->execute([":product_id"=>$id]);
-    return;
-
+    $stmt = $db->prepare("DELETE FROM Carts WHERE product_id=$id");
+    $r = $stmt->execute();
+    if($r)
+      return true;
+    else
+      return false;
 }
-
-//end flash
-/*
-function getState($n) {
-    switch ($n) {
-        case 0:
-            echo "Incubating";
-            break;
-        case 1:
-            echo "Hatching";
-            break;
-        case 2:
-            echo "Hatched";
-            break;
-        case 3:
-            echo "Expired";
-            break;
-        default:
-            echo "Unsupported state: " . safer_echo($n);
-            break;
-    }
-}*/
+function clearCart($id)
+{	
+    $db = getDB();
+    $stmt = $db->prepare("DELETE FROM Carts WHERE user_id=$id");
+    $r = $stmt->execute();
+    if($r)
+      return true;
+    else
+      return false;
+}
 
 ?>
