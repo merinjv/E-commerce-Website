@@ -8,7 +8,5 @@ CREATE TABLE OrderItems
     created     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     primary key (id),
     foreign key (product_id) references Products (id),
-    foreign key (order_id) references Orders (id),
-    foreign key (user_id) references Users (id),
-    UNIQUE KEY (product_id, order_id, user_id)
+    foreign key (order_id) references Orders (id)
 )

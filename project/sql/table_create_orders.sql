@@ -7,7 +7,6 @@ CREATE TABLE Orders
     total_price      decimal(12, 2) default 0.00,
     created     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     primary key (id),
-    foreign key (user_id) references Users (id),
-    UNIQUE KEY (user_id)
+    foreign key (user_id) references Users (id)
 )
 
