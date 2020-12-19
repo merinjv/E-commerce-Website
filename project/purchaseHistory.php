@@ -172,7 +172,6 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
    	    $r = $stmt->execute([":category"=>$category]);
         $ca = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //$cts = "category = ".$ca[$ind]["id"];
-        //flash(count($ca));
         $in = 0;
         foreach($ca as $cas)
         {
