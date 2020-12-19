@@ -18,6 +18,28 @@ function has_role($role) {
     return false;
 }
 
+function data($value)
+{
+    if(isset($_POST[$value]))
+    {
+        //flash("here");
+        $data = $_POST[$value];
+        $_SESSION[$value] = $data;
+    }
+    elseif(isset($_SESSION[$value]))
+    {
+        //flash("sess");
+        $data = $_SESSION[$value];
+    }
+    else
+    {
+        //flash("gone");
+        $data=null;
+    }
+    
+    return $data;
+}
+
 function get_username() {
     if (is_logged_in() && isset($_SESSION["user"]["username"])) {
         return $_SESSION["user"]["username"];
@@ -132,13 +154,16 @@ function updateItemInProductTable($id, $cartQuant)
      $results = $stmt->fetch(PDO::FETCH_ASSOC);
      
      $presQuantity = $results["quantity"];
-     
+     $visibility = 0;
      $leftQuant = $presQuantity-$cartQuant;
+     if($leftQuant==0)
+       $visibility = 1;
          $db = getDB();
-         $stmt = $db->prepare("UPDATE Products set quantity=:quantity WHERE id=:id");
+         $stmt = $db->prepare("UPDATE Products set quantity=:quantity, visibility=:visibility WHERE id=:id");
          $r = $stmt->execute([
            ":id"=>$id,
-	         ":quantity"=>$leftQuant
+	         ":quantity"=>$leftQuant,
+          ":visibility"=>$visibility
          ]);
      return true;
 
