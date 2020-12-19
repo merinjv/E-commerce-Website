@@ -39,6 +39,7 @@ elseif(isset($_POST["quantity"])){
 }
 //database selection
 if((isset($_POST["quantity"]) || !empty($q)) && has_role("Admin")){
+//out of stock check
 $total = 0;
     $offset = 0;
     $db = getDB();
