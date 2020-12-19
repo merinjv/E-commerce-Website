@@ -6,7 +6,7 @@ if (isset($_GET["id"])) {
 }
 ?>
 <?php
-//fetching
+//fetch
 $result = [];
 $canRate = false;
 $ratingbox = false;
