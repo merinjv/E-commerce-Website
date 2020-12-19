@@ -45,7 +45,6 @@ if (!has_role("Admin")) {
             $address[] = $order["address"];
             $time[] = $order["created"];
             
-            //flash($time[0]);
             $db = getDB();
           	$stmt = $db->prepare("SELECT product_id,unit_price,quantity FROM OrderItems WHERE order_id=$orderid LIMIT 10");
           	$r = $stmt->execute();
