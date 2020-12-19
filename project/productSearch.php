@@ -105,6 +105,7 @@ elseif((isset($_POST["search"]) || !empty($search)) && !empty($query)) {
     elseif(isset($_POST["ratingCheck"]) || !empty($rates))
     {
         $qy .="ORDER BY rating DESC LIMIT :offset, :count ";
+        //rating sort
     }
     else{
         $qy .="LIMIT :offset, :count";   
