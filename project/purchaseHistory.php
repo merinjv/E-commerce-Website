@@ -87,7 +87,6 @@ if (!has_role("Admin")) {
       	$r = $stmt->execute();
         $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        //flash($orde["id"]);
        $total = 0;
        $offset = 0;
        $calculate = 0;
