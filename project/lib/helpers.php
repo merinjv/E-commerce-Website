@@ -108,5 +108,81 @@ function clearCart($id)
     else
       return false;
 }
+function checkItemInProductTable($id, $cartQuant)
+{
+     $db = getDB();
+     $stmt = $db->prepare("SELECT quantity FROM Products WHERE id=$id");
+     $r = $stmt->execute();
+     $results = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+     $presQuantity = $results["quantity"];
+     
+     if($cartQuant<=$presQuantity)
+         return true; 
+     else
+         return false;
+
+}
+
+function updateItemInProductTable($id, $cartQuant)
+{
+     $db = getDB();
+     $stmt = $db->prepare("SELECT quantity FROM Products WHERE id=$id");
+     $r = $stmt->execute();
+     $results = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+     $presQuantity = $results["quantity"];
+     
+     $leftQuant = $presQuantity-$cartQuant;
+         $db = getDB();
+         $stmt = $db->prepare("UPDATE Products set quantity=:quantity WHERE id=:id");
+         $r = $stmt->execute([
+           ":id"=>$id,
+	         ":quantity"=>$leftQuant
+         ]);
+     return true;
+
+}
+
+function getItemInProductTable($arr)
+{
+     $db = getDB();
+     $stmt = $db->prepare("SELECT name, quantity FROM Products WHERE id=$arr[0]");
+     $r = $stmt->execute();
+     $results = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+     if($results["quantity"]>0){
+       $statement = $results["name"]." has only a quantity of ".$results["quantity"];
+     }
+     else{
+       $statement = $results["name"]." is out of stock";
+     }
+     
+     if(count($arr)>1){
+         for($i=1; $i<count($arr); $i++){
+             $db = getDB();
+             $stmt = $db->prepare("SELECT name, quantity FROM Products WHERE id=$arr[$i]");
+             $r = $stmt->execute();
+             $results = $stmt->fetch(PDO::FETCH_ASSOC);
+             
+             if($results["quantity"]>0){
+               $statement = $statement." and ".$results["name"]." has only a quantity of ".$results["quantity"];
+             }
+             else
+             {
+               $statement = $statement." and ".$results["name"]." is out of stock";
+             }
+          }
+      }
+     
+     return $statement;
+}
+function validateAddress($add)
+{
+
+    $check = '/^[a-zA-Z0-9-. ]+$/';
+    return preg_match($check, $add);
+
+}
 
 ?>

@@ -45,6 +45,7 @@ foreach($results as $p){
         <div class="card-title">
                 <div>
                      <a type="button" name="delete" href="delete_cart.php?id=<?php safer_echo($p['user_id']); ?>">Clear Cart</a>
+                     <a type="submit" name="save" href="Verify_Orders.php?id=<?php safer_echo($p['user_id']); ?>"> Order </a>
                 </div>
         </div>
     </div>

@@ -3,8 +3,7 @@ body {
     background-size: cover;
     font-family: system;
     font-size: 1.5em;
-    margin-left: 200px;
-    margin-right: 200px;
+    width: 100%;
 }
 
 
@@ -13,7 +12,7 @@ body {
 ul[class="nav"]{
 
     list-style-type: none;
-    margin: 0;
+    margin: 5px 5px;
     padding: 0;
     overflow: hidden;
     background-color: black;
@@ -40,10 +39,10 @@ ul[class="nav"]{
 }
 
 input, select {
-    width: 99.5%;
+    width: 50%;
     padding: 12px 20px;
-    margin: 20px 15px;
-    display: inline-block;
+    margin: 5px 5px;
+    display: block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -66,6 +65,7 @@ input[type=checkbox] {
     width: 1%;
     background-color: black;
     color: white;
+    display: inline;
     padding: 14px 10px;
     margin-left:6px;
     margin-top:8px;
@@ -74,10 +74,12 @@ input[type=checkbox] {
     cursor: pointer;
     
 }
+
 input[type=radio] {
     width: 1%;
     background-color: black;
     color: white;
+    display: inline;
     padding: 14px 10px;
     margin-left:6px;
     margin-top:8px;
@@ -87,10 +89,10 @@ input[type=radio] {
     
 }
 input[type=number] {
-    width: 99.5%;
+    width: 50%;
     padding: 12px 20px;
-    margin: 20px 30px;
-    display: inline-block;
+    margin: 5px 5px;
+    display: block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -105,22 +107,22 @@ input:nth-of-type(1) {
 }
 
 input:nth-of-type(2) {
-    margin-left: 6px !important;
-    margin-right: 10px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
 }
 
 input:nth-of-type(3) {
-    margin-left: 8px !important;
-    margin-right: 15px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
 }
 
 input:nth-of-type(4) {
-    margin-left: 11px !important;
-    margin-right: 20px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
 }
 
 input:nth-of-type(5) {
-    margin-left: 13px !important;
-    margin-right: 25px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
 }
 
