@@ -25,7 +25,7 @@ foreach($results as $p){
     <div class="card">
       <?php foreach ($results as $p): ?>
         
-        <div class="card-title"><br>
+        <div class="card-items"><br>
            <a type="button" href="productView.php?id=<?php safer_echo($p['product_id']); ?>"><?php safer_echo($p["name"]); ?></a>
         </div>
         <div class="card-body">
@@ -33,7 +33,6 @@ foreach($results as $p){
                 <div>Quantity: <?php safer_echo($p["quantity"]); ?></div>
                 <div>Subtotal: <?php safer_echo($p["price"]); ?></div>
                 <div>Product ID: <?php safer_echo($p["product_id"]); ?></div>
-                <div>Owned by: <?php safer_echo($p["username"]); ?></div>
                 <div>
                      <a type="button" name="edit" href="cartEdit.php?id=<?php safer_echo($p['product_id']); ?>">Edit</a>
                      <a type="button" name="delete" href="delete_product_cart.php?id=<?php safer_echo($p['product_id']); ?>">Delete</a>
@@ -42,7 +41,7 @@ foreach($results as $p){
         </div>
         <?php endforeach; ?>
         <div class="total"><br>Total: $<?php safer_echo($total); ?></div>
-        <div class="card-title">
+        <div class="card-buttons">
                 <div>
                      <a type="button" name="delete" href="delete_cart.php?id=<?php safer_echo($p['user_id']); ?>">Clear Cart</a>
                      <a type="submit" name="save" href="Verify_Orders.php?id=<?php safer_echo($p['user_id']); ?>"> Order </a>

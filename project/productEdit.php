@@ -20,16 +20,18 @@ if(isset($_POST["save"])){
 	$quantity = $_POST["quantity"];
 	$price = $_POST["price"];
 	$desc = $_POST["description"];
+ $visible = $_POST["visibility"];
 	$user = get_user_id();
 	$db = getDB();
 	if(isset($id)){
-		$stmt = $db->prepare("UPDATE Products set name=:name, quantity=:quantity, price=:price, description=:desc where id=:id");
+		$stmt = $db->prepare("UPDATE Products set name=:name, quantity=:quantity, price=:price, description=:desc, visibility=:visibility where id=:id");
 		$r = $stmt->execute([
       ":id"=>$id,
 			":name"=>$name,
 		  ":quantity"=>$quantity,
       ":price"=>$price,
-		  ":desc"=>$desc
+		  ":desc"=>$desc,
+        ":visibility"=>$visible
 		]);
 		if($r){
 			flash("Updated successfully with id: " . $id);
@@ -60,11 +62,17 @@ if(isset($id)){
 	<label>Name</label>
 	<input name="name" placeholder="Name" value="<?php echo $result["name"];?>"/>
 	<label>Quantity</label>
-	<input type="number" min="0" name="quantity"/>
+	<input type="number" min="0" name="quantity" value="<?php echo $result["quantity"];?>"/>
 	<label>Price</label>
-	<input type="number" min="0" name="price"/>
+	<input type="number" min="0" name="price" value=<?php echo intval($result["price"]);?> />
 	<label>Description</label>
-	<input type="text" name="description"/>
+	<input type="text" name="description" value="<?php echo $result["description"];?>"/>
+    <label>Visible to Public (Yes:0, No:1):</label>
+    <select name="visibility">
+            <option> <value="1">1</option>
+            <option> <value="0">0</option>
+            <option> <value="1">1</option>
+    </select>
 	<input type="submit" name="save" value="Update"/>
 </form>
 
