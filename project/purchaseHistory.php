@@ -151,8 +151,6 @@ if (!has_role("Admin")) {
             }
             //if($val)
               //break;
-              
-            //flash($names[0]);
       
 }
 elseif(has_role("Admin")){
